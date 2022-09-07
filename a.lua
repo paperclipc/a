@@ -14,26 +14,30 @@ local playerGui = localPlayer.PlayerGui
 local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 
 --// Get Tycoon
-local tycoon
-for i,v in pairs(workspace.Tycoons:GetChildren()) do
-    if v.Parts.BuildingBase.Sign.Main.SurfaceGui.TextLabel.Text:find(localPlayer.Name) then
-        tycoon = v
-    end
-end
-
-if not tycoon then
-    local mag = math.huge
+function getTycoon()
+    local tycoon
     for i,v in pairs(workspace.Tycoons:GetChildren()) do
-        if (character.PrimaryPart.Position - v.Spawn.Position).Magnitude < mag then
-            mag = (character.PrimaryPart.Position - v.Spawn.Position).Magnitude
+        if v.Parts.BuildingBase.Sign.Main.SurfaceGui.TextLabel.Text:find(localPlayer.Name) then
             tycoon = v
         end
     end
+
+    if not tycoon then
+        local mag = math.huge
+        for i,v in pairs(workspace.Tycoons:GetChildren()) do
+            if (character.PrimaryPart.Position - v.Spawn.Position).Magnitude < mag then
+                mag = (character.PrimaryPart.Position - v.Spawn.Position).Magnitude
+                tycoon = v
+            end
+        end
+    end
+    
+    return tycoon
 end
 
 --// Functions
 function collectRats()
-    for i,v in pairs(tycoon.Rats:GetChildren()) do
+    for i,v in pairs(getTycoon().Rats:GetChildren()) do
         sRep.Knit.Services.TycoonService.RE.CollectRat:FireServer(tonumber(v.Name))
     end
 end
@@ -77,7 +81,7 @@ function getCost(cost)
 end
 
 function checkPurchases()
-    for i,v in pairs(tycoon.Buttons:GetChildren()) do
+    for i,v in pairs(getTycoon().Buttons:GetChildren()) do
         if v:FindFirstChild("Hitbox") and v.Hitbox.Transparency ~= 1 then
             local costLabel
             for i,v in pairs(v.Hitbox.BillboardGui.Frame:GetChildren()) do
@@ -99,7 +103,7 @@ function checkPurchases()
 end
 
 --// Automation
-tycoon.Rats.ChildAdded:Connect(function(c)
+getTycoon().Rats.ChildAdded:Connect(function(c)
     if _G.AutoCollect == true then
         collectRats()
     end
