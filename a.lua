@@ -95,13 +95,19 @@ washRats()
 
 --// AutoCollect
 tycoon.Rats.ChildAdded:Connect(function(c)
-    if _G.AutoCollect then
+    if _G.AutoCollect == true then
         collectRats()
-        if _G.AutoWash then
-            washRats()
-        end
-        if _G.AutoBuy then
-            checkPurchases()
+    end
+    if _G.AutoBuy == true then
+        checkPurchases()
+    end
+    if _G.AutoWash == true then
+        washRats()
+    end
+    if _G.AutoParkour == true then
+        local obby = workspace.Obby
+        if obby.Sign.Forcefield.Ring.Transparency == 1 then
+            firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 0)
         end
     end
 end)
