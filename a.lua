@@ -98,15 +98,13 @@ function checkPurchases()
     end
 end
 
-if getMoney() == 0 then
-    checkPurchases()
-end
-
 --// Automation
 tycoon.Rats.ChildAdded:Connect(function(c)
     if _G.AutoCollect == true then
         collectRats()
     end
+end)
+while wait(1) do
     if _G.AutoBuy == true then
         checkPurchases()
     end
@@ -120,4 +118,4 @@ tycoon.Rats.ChildAdded:Connect(function(c)
             firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 0)
         end
     end
-end)
+end
