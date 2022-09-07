@@ -20,8 +20,11 @@ _G.AutoParkour = false
 local localPlayer = sPlayer.LocalPlayer
 local playerGui = localPlayer.PlayerGui
 local cashShop = playerGui:WaitForChild("Cash Shop")
-cashShop:WaitForChild("ImageLabel").Visible = false
 local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+
+--// Disable Popups
+game:GetService("Lighting"):WaitForChild("Blur").Enabled = false
+cashShop:WaitForChild("ImageLabel").Visible = false
 
 --// Get Tycoon
 function getTycoon()
