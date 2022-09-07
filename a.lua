@@ -108,18 +108,20 @@ getTycoon().Rats.ChildAdded:Connect(function(c)
         collectRats()
     end
 end)
-while wait(1) do
-    if _G.AutoBuy == true then
-        checkPurchases()
-    end
-    if _G.AutoWash == true then
-        washRats()
-    end
-    if _G.AutoParkour == true then
-        local obby = workspace.Obby
-        if obby.Sign.Forcefield.Ring.Transparency == 1 then
-            firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 1)
-            firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 0)
+spawn(function()
+    while wait(1) do
+        if _G.AutoBuy == true then
+            checkPurchases()
+        end
+        if _G.AutoWash == true then
+            washRats()
+        end
+        if _G.AutoParkour == true then
+            local obby = workspace.Obby
+            if obby.Sign.Forcefield.Ring.Transparency == 1 then
+                firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 1)
+                firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 0)
+            end
         end
     end
-end
+end)
