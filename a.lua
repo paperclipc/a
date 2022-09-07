@@ -57,7 +57,9 @@ function getCost(cost)
     local aCost = cost:sub(2, #cost)
     local fCost
     
-    if aCost:match("K") or aCost:match("M") or aCost:match("B") then
+    if cost == "FREE!" then
+        fCost = 0
+    elseif aCost:match("K") or aCost:match("M") or aCost:match("B") then
         local tCost = tonumber(aCost:sub(1, #aCost-1))
         if aCost:match("K") then
             tCost = tCost * 1000
