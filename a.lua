@@ -89,6 +89,7 @@ function checkPurchases()
             end
             
             if getMoney() >= getCost(costLabel.Text) then
+                firetouchinterest(character.PrimaryPart, v.Hitbox, 1)
                 firetouchinterest(character.PrimaryPart, v.Hitbox, 0)
             end
         end
@@ -109,6 +110,7 @@ tycoon.Rats.ChildAdded:Connect(function(c)
     if _G.AutoParkour == true then
         local obby = workspace.Obby
         if obby.Sign.Forcefield.Ring.Transparency == 1 then
+            firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 1)
             firetouchinterest(character.PrimaryPart, obby.Button.Hitbox, 0)
         end
     end
