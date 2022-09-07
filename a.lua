@@ -2,6 +2,12 @@
 local sPlayer = game:GetService("Players")
 local sRep = game:GetService("ReplicatedStorage")
 
+--// Global
+_G.AutoCollect = false
+_G.AutoBuy = false
+_G.AutoWash = false
+_G.AutoParkour = false
+
 --// Get Player/Character
 local localPlayer = sPlayer.LocalPlayer
 local playerGui = localPlayer.PlayerGui
