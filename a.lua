@@ -98,6 +98,10 @@ function checkPurchases()
     end
 end
 
+if getMoney() == 0 then
+    checkPurchases()
+end
+
 --// Automation
 tycoon.Rats.ChildAdded:Connect(function(c)
     if _G.AutoCollect == true then
