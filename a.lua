@@ -89,7 +89,7 @@ function checkPurchases()
             end
             
             if getMoney() >= getCost(costLabel.Text) then
-                firetouchinterest(character.PrimaryPart, v.Hitbox, 1)
+                firetouchinterest(character.PrimaryPart, v.Hitbox, 0)
             end
         end
     end
