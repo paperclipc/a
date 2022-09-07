@@ -11,6 +11,8 @@ _G.AutoParkour = false
 --// Get Player/Character
 local localPlayer = sPlayer.LocalPlayer
 local playerGui = localPlayer.PlayerGui
+local cashShop = playerGui:WaitForChild("Cash Shop")
+cashShop:WaitForChild("ImageLabel").Visible = false
 local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 
 --// Get Tycoon
