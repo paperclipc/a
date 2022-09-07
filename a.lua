@@ -31,6 +31,7 @@ if not tycoon then
     end
 end
 
+--// Functions
 function collectRats()
     for i,v in pairs(tycoon.Rats:GetChildren()) do
         sRep.Knit.Services.TycoonService.RE.CollectRat:FireServer(tonumber(v.Name))
@@ -94,12 +95,7 @@ function checkPurchases()
     end
 end
 
-
---// First Run
-collectRats()
-washRats()
-
---// AutoCollect
+--// Automation
 tycoon.Rats.ChildAdded:Connect(function(c)
     if _G.AutoCollect == true then
         collectRats()
